@@ -16,7 +16,6 @@ in the `openidm` hierarchy.
 
 Key | Type | Description | Default
 :---|:---|:---|:---
-`name` | String  | Name of chatbot | Lita Chatbot
 `default[:java][:jdk_version]` | String | JDK Version | 7
 `version` |  String | OpenIDM version to install | 3.1.0
 `url` | String | URL to download the openidm package from (See Important Notice) | ''
