@@ -23,7 +23,7 @@ file node[:openidm][:path] + '/conf/repo.orientdb.json' do
 end
 
 remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
-  source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json.erb'
+  source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json'
   action :create_if_missing
 end
 
