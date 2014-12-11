@@ -60,3 +60,21 @@ mysql_database_user node[:openidm][:db_user] do
   database_name 'openidm'
   privileges [:all]
 end
+
+execute 'create_openidm_rc' do
+  command node[:openidm][:path] + '/bin/create-openidm-rc.sh'
+  cwd node[:openidm][:path] + '/bin'
+  not_if { ::File.exist?(node[:openidm][:path] + '/bin/openidm') }
+end
+
+remote_file '/etc/init.d/openidm' do
+  source 'file:///' + node[:openidm][:path] + '/bin/openidm'
+  action :create
+  mode '0755'
+  only_if { ::File.exist?(node[:openidm][:path] + '/bin/openidm') }
+end
+
+service 'openidm' do
+  supports :restart => true
+  action [ :enable, :start ]
+end
