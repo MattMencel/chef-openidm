@@ -48,8 +48,8 @@ mysql_connection_info = {
 }
 
 execute 'create_openidm_db' do
-  command 'mysql -u root --password=' + node[:mysql][:server_root_password] + ' -D '\
-  'openidm < ' + node[:openidm][:path] + '/db/mysql/scripts/openidm.sql'
+  command 'mysql -u root --password=' + node[:mysql][:server_root_password] + ' '\
+          '< ' + node[:openidm][:path] + '/db/mysql/scripts/openidm.sql'
   not_if { Dir.exist?(node[:mysql][:data_dir] + '/openidm') }
 end
 
