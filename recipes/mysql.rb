@@ -21,7 +21,7 @@ mysql_connection_info = {
 execute 'create_openidm_db' do
   command 'mysql -u root --password=' + item['password'] + ' '\
           '< ' + node[:openidm][:path] + '/db/mysql/scripts/openidm.sql'
-  not_if { Dir.exist?(node[:mysql][:data_dir] + '/openidm') }
+  not_if { Dir.exist?('/var/lib/mysql-openidm/openidm') }
 end
 
 mysql_database_user node[:openidm][:db_user] do
