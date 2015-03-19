@@ -28,7 +28,10 @@ remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
 end
 
 { 'username' => node[:openidm][:db_user],
-  'password' => node[:openidm][:db_pass]
+  'password' => node[:openidm][:db_pass],
+  'jdbcUrl' => 'jdbc:mysql://' + node[:openidm][:db_host] + ':'\
+               + node[:openidm][:db_port] + '/openidm?'\
+               'allowMultiQueries=true&characterEncoding=utf8'
 }.each_pair do |k, v|
   openidm_repo_edit node[:openidm][:path] + '/conf/repo.jdbc.json' do
     action :edit_connection
