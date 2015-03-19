@@ -4,7 +4,7 @@ maintainer_email 'mr-mencel@wiu.edu'
 license 'Apache 2.0'
 description 'Installs/Configures openidm'
 long_description 'Installs/Configures openidm'
-version '0.2.0'
+version '0.2.1'
 
 supports 'ubuntu'
 
