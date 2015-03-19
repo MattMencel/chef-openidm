@@ -13,13 +13,13 @@ mysql2_chef_gem 'default' do
 end
 
 mysql_connection_info = {
-  host: 'localhost',
+  host: '127.0.0.1',
   username: 'root',
   password: item['password']
 }
 
 execute 'create_openidm_db' do
-  command 'mysql -u root --password=' + item['password'] + ' '\
+  command 'mysql -h 127.0.0.1 -u root --password=' + item['password'] + ' '\
           '< ' + node[:openidm][:path] + '/db/mysql/scripts/openidm.sql'
   not_if { Dir.exist?('/var/lib/mysql-openidm/openidm') }
 end
