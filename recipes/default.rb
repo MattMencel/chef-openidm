@@ -38,28 +38,7 @@ end
   end
 end
 
-include_recipe 'mysql::server'
-
-include_recipe 'database::mysql'
-mysql_connection_info = {
-  host: 'localhost',
-  username: 'root',
-  password: node[:mysql][:server_root_password]
-}
-
-execute 'create_openidm_db' do
-  command 'mysql -u root --password=' + node[:mysql][:server_root_password] + ' '\
-          '< ' + node[:openidm][:path] + '/db/mysql/scripts/openidm.sql'
-  not_if { Dir.exist?(node[:mysql][:data_dir] + '/openidm') }
-end
-
-mysql_database_user node[:openidm][:db_user] do
-  connection mysql_connection_info
-  password node[:openidm][:db_pass]
-  action [:create, :grant]
-  database_name 'openidm'
-  privileges [:all]
-end
+include_recipe 'openidm::mysql'
 
 execute 'create_openidm_rc' do
   command node[:openidm][:path] + '/bin/create-openidm-rc.sh'
@@ -76,5 +55,5 @@ end
 
 service 'openidm' do
   supports :restart => true
-  action [ :enable, :start ]
+  action [:enable, :start]
 end
