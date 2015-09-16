@@ -4,10 +4,8 @@ Installs and configures [OpenIDM](http://forgerock.com/products/open-identity-st
 
 ## Supported Platforms
 
-* Ubuntu
- * 14.04 (tested)
-
-It will likely work on other Ubuntu versions and may also work on RHEL OSs.
+* CentOS
+ * 7 (tested)
 
 ## Attributes
 

@@ -2,9 +2,9 @@ require 'json'
 
 action :edit_connection do
   if @current_resource.exists
-    Chef::Log.info "#{ @new_resource} already exists - nothing to do."
+    Chef::Log.info "#{@new_resource} already exists - nothing to do."
   else
-    converge_by("Modify #{@new_resource.key} in #{ @new_resource}") do
+    converge_by("Modify #{@new_resource.key} in #{@new_resource}") do
       edit_connection
     end
   end
