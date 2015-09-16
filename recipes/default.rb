@@ -6,6 +6,10 @@
 
 include_recipe 'java'
 
+package 'unzip' do
+  action :install
+end
+
 ark 'openidm' do
   url node[:openidm][:url]
   version node[:openidm][:version]
