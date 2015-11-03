@@ -1,4 +1,4 @@
-actions :edit_connection
+actions :edit_connection, :edit_explicit_mapping
 default_action :edit
 
 attribute :path, name_attribute: true, kind_of: String, required: true
