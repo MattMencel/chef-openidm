@@ -44,6 +44,13 @@ end
   end
 end
 
+openidm_repo_edit node[:openidm][:path] + '/conf/repo.jdbc.json' do
+  action :edit_connection
+  file 'repo.jdbc.json'
+  key 'explicitMapping'
+  value node[:openidm][:explicit_mapping]
+end
+
 include_recipe 'openidm::mysql'
 
 execute 'create_openidm_rc' do

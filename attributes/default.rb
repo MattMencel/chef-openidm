@@ -1,4 +1,4 @@
-default[:java][:jdk_version] = '8'
+default[:java][:jdk_version] = '7'
 
 default[:openidm][:version] = '3.1.0'
 
