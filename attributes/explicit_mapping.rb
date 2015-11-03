@@ -1,6 +1,6 @@
 default[:openidm][:explicit_mapping] =
 '
-"link" : {
+{ "link" : {
       "table" : "links",
       "objectToColumn" : {
           "_id" : "objectid",
