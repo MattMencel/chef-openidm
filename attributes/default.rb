@@ -10,3 +10,5 @@ default[:openidm][:db_user] = 'openidm'
 default[:openidm][:db_pass] = 'openidm'
 default[:openidm][:db_host] = '127.0.0.1'
 default[:openidm][:db_port] = '3306'
+
+default[:openidm][:explicit_mappings] = ''

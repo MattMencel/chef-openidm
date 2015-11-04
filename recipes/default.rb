@@ -26,22 +26,28 @@ file node[:openidm][:path] + '/conf/repo.orientdb.json' do
   action :delete
 end
 
-remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
-  source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json'
-  action :create_if_missing
-end
+# remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
+#   source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json'
+#   action :create_if_missing
+# end
 
-{ 'username' => node[:openidm][:db_user],
-  'password' => node[:openidm][:db_pass],
-  'jdbcUrl' => 'jdbc:mysql://' + node[:openidm][:db_host] + ':' + node[:openidm][:db_port] + '/openidm?'\
-               'allowMultiQueries=true&characterEncoding=utf8'
-}.each_pair do |k, v|
-  openidm_repo_edit node[:openidm][:path] + '/conf/repo.jdbc.json' do
-    action :edit_connection
-    file 'repo.jdbc.json'
-    key k
-    value v
-  end
+# { 'username' => node[:openidm][:db_user],
+#   'password' => node[:openidm][:db_pass],
+#   'jdbcUrl' => 'jdbc:mysql://' + node[:openidm][:db_host] + ':' + node[:openidm][:db_port] + '/openidm?'\
+#                'allowMultiQueries=true&characterEncoding=utf8'
+# }.each_pair do |k, v|
+#   openidm_repo_edit node[:openidm][:path] + '/conf/repo.jdbc.json' do
+#     action :edit_connection
+#     file 'repo.jdbc.json'
+#     key k
+#     value v
+#   end
+# end
+
+template node[:openidm][:path] + '/conf/repo.jdbc.json' do
+  source 'repo.jdbc.json.erb'
+  mode 0644
+  notifies :restart, 'service[openidm]'
 end
 
 include_recipe 'openidm::mysql'
