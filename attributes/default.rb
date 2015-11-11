@@ -1,8 +1,8 @@
 default[:java][:jdk_version] = '7'
 
-default[:openidm][:version] = '3.1.0'
+default[:openidm][:version] = '4.0.0-SNAPSHOT'
 
-default[:openidm][:url] = ''
+default[:openidm][:url] = 'http://download.forgerock.org/downloads/openidm/snapshot/openidm-4.0.0-SNAPSHOT.zip'
 
 default[:openidm][:path] = '/opt/openidm'
 
