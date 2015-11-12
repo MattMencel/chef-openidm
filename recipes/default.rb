@@ -44,8 +44,20 @@ end
 #   end
 # end
 
-template node[:openidm][:path] + '/conf/repo.jdbc.json' do
-  source 'repo.jdbc.json.erb'
+# template node[:openidm][:path] + '/conf/repo.jdbc.json' do
+#   source 'repo.jdbc.json.erb'
+#   mode 0644
+#   notifies :restart, 'service[openidm]'
+# end
+
+remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
+  source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json'
+  mode 0644
+  notifies :restart, 'service[openidm]'
+end
+
+template node[:openidm][:path] + '/conf/datasource.jdbc-default.json' do
+  source 'datasource.jdbc-default.json.erb'
   mode 0644
   notifies :restart, 'service[openidm]'
 end
