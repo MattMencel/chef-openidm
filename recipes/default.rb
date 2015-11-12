@@ -15,6 +15,7 @@ ark 'openidm' do
   version node[:openidm][:version]
   path '/opt/openidm-' + node[:openidm][:version]
   home_dir node[:openidm][:path]
+  not_if { ::Dir.exist?(node[:openidm][:path] + '/bin/') }
 end
 
 # Setup Steps for OpenIDM with MySQL
