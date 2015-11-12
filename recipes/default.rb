@@ -54,10 +54,19 @@ end
 #   end
 # end
 
-template node[:openidm][:path] + '/conf/repo.jdbc.json' do
+template node[:openidm][:path] + '/conf/repo.jdbc.json.WIU' do
   source 'repo.jdbc.json.erb'
   mode 0644
+  notifies :create, 'remote_file[' + node[:openidm][:path] + '/conf/repo.jdbc.json]', :immediately
+end
+
+# Because OpenIDM edits this file when the serveice restarts, we only want to
+# update it when the template changes.
+remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
+  source 'file:///' + node[:openidm][:path] + '/conf/repo.jdbc.json.WIU'
+  mode 0644
   notifies :restart, 'service[openidm]'
+  action :nothing
 end
 
 template node[:openidm][:path] + '/conf/datasource.jdbc-default.json' do

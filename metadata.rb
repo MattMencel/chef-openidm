@@ -4,7 +4,7 @@ maintainer_email 'mr-mencel@wiu.edu'
 license 'Apache 2.0'
 description 'Installs/Configures openidm'
 long_description 'Installs/Configures openidm'
-version '0.4.7'
+version '0.4.8'
 
 supports 'centos'
 
