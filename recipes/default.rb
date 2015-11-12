@@ -62,6 +62,7 @@ end
 
 remote_file node[:openidm][:path] + '/conf/repo.jdbc.json' do
   source 'file:///' + node[:openidm][:path] + '/db/mysql/conf/repo.jdbc.json'
+  action :create_if_missing
   mode 0644
   notifies :restart, 'service[openidm]'
 end
