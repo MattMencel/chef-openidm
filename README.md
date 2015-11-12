@@ -15,19 +15,11 @@ in the `openidm` hierarchy.
 Key | Type | Description | Default
 :---|:---|:---|:---
 `default[:java][:jdk_version]` | String | JDK Version | 7
-`version` |  String | OpenIDM version to install | 3.1.0
-`url` | String | URL to download the openidm package from (See Important Notice) | ''
+`version` |  String | OpenIDM version to install | 4.0.0-SNAPSHOT
+`url` | String | URL to download the OpenIDM 4 package from nightlies | ''
 `path` | String | Install path | /opt/openidm
 `db_user` | String | MySQL DB user for OpenIDM | 'openidm'
 `db_pass` | String | MySQL DB password for OpenIDM | 'openidm'
-
-## Important Note
-
-I haven't figured out how to download the OpenIDM package directly from
-ForgeRock as it requires you have a ForgeRock username and password to access
-the download URL. As a workaround, I wrote this so that you can login and
-download the package to a local web host and pull it into your cookbook from
-your local copy.
 
 ## Usage
 
@@ -36,6 +28,8 @@ your local copy.
 Installs and configures the OpenIDM package.
 
 ## LWRP
+
+*THIS IS DEPRECATED*
 
 You cannot use a template resource to deploy the repo.jdbc.json config file
 because the OpenIDM service will open and modify that file outside of Chef. I
@@ -57,7 +51,7 @@ work.
 - Author:: Matt Mencel (<matt@techminer.net>)
 
 ```text
-Copyright:: 2014 Matt Mencel
+Copyright:: 2015 Matt Mencel
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
