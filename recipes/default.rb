@@ -10,12 +10,20 @@ package 'unzip' do
   action :install
 end
 
+# Download and unpack on a new install
 ark 'openidm' do
   url node[:openidm][:url]
   version node[:openidm][:version]
   path '/opt/openidm-' + node[:openidm][:version]
   home_dir node[:openidm][:path]
   not_if { ::Dir.exist?(node[:openidm][:path] + '/bin/') }
+end
+
+# Put latest update in the update folder if already installed
+remote_file node[:openidm][:path] + '/bin/update/' + default[:openidm][:version] + '.zip' do
+  source node[:openidm][:url]
+  mode 0644
+  only_if { ::Dir.exist?(node[:openidm][:path] + '/bin/update/') }
 end
 
 # Setup Steps for OpenIDM with MySQL
