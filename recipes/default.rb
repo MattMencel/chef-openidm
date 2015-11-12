@@ -20,7 +20,8 @@ ark 'openidm' do
 end
 
 # Put latest update in the update folder if already installed
-remote_file node[:openidm][:path] + '/bin/update/' + default[:openidm][:version] + '.zip' do
+f = node[:openidm][:path] + '/bin/update/' + node[:openidm][:version] + '.zip'
+remote_file f do
   source node[:openidm][:url]
   mode 0644
   only_if { ::Dir.exist?(node[:openidm][:path] + '/bin/update/') }
